@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sales Orders — Grain Storage</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="dashboard.html">🌾 Grain Storage</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="contacts.html">Contacts</a></li>
+        <li class="nav-item"><a class="nav-link" href="grain-lots.html">Grain Lots</a></li>
+        <li class="nav-item"><a class="nav-link" href="vendor-bills.html">Vendor Bills</a></li>
+        <li class="nav-item"><a class="nav-link active" href="sales-orders.html">Sales Orders</a></li>
+        <li class="nav-item"><a class="nav-link" href="customer-invoices.html">Customer Invoices</a></li>
+        <li class="nav-item"><a class="nav-link" href="budgets.html">Budgets</a></li>
+        <li class="nav-item"><a class="nav-link" href="reports.html">Reports</a></li>
+      </ul>
+      <span class="navbar-text text-white me-3" id="navUser"></span>
+      <button class="btn btn-outline-light btn-sm" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-2">
+    <h4>Sales Orders</h4>
+    <button class="btn btn-success btn-sm" id="openModalBtn">+ New Sales Order</button>
+  </div>
+  <div id="alertBox" class="alert d-none"></div>
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr><th>ID</th><th>Customer</th><th>Grain Lot</th><th>Quantity (tons)</th><th>Order Date</th><th>Status</th></tr>
+    </thead>
+    <tbody id="orderTable"></tbody>
+  </table>
+</div>
+
+<!-- New Sales Order Modal -->
+<div class="modal fade" id="orderModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header"><h5 class="modal-title">New Sales Order</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body">
+        <div id="modalAlert" class="alert alert-danger d-none"></div>
+        <form id="orderForm">
+          <div class="mb-3">
+            <label class="form-label">Customer</label>
+            <select id="soCustomer" class="form-select" required></select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Grain Lot</label>
+            <select id="soGrainLot" class="form-select" required></select>
+          </div>
+          <div class="mb-3"><label class="form-label">Quantity (tons)</label><input type="number" id="soQty" class="form-control" step="0.01" required/></div>
+          <div class="mb-3"><label class="form-label">Order Date</label><input type="date" id="soDate" class="form-control" required/></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-success" id="saveOrder">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/api.js"></script>
+<script src="js/sales-orders.js"></script>
+</body>
+</html>
